@@ -34,7 +34,7 @@ const moveKnots = (first, second) => {
     }
     
 }
-
+let count = 0;
 for (let motion of motions) {
   let dir;
   switch (motion[0]) {
@@ -104,6 +104,6 @@ for (let i = top; i <= bottom; i++) {
 const visgrid = grid.map(row => {
   return row.join('')
 })
-console.log(visgrid.slice(0,100))
-console.log(visgrid.slice(100,200))
-console.log(visgrid.slice(200))
+// console.log(visgrid.slice(0,100))
+// console.log(visgrid.slice(100,200))
+// console.log(visgrid.slice(200))
