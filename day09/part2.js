@@ -1,5 +1,5 @@
 const fs = require('fs');
-const motions = fs.readFileSync('example2.txt', 'utf8').split('\n').map(motion => motion.split(' '));
+const motions = fs.readFileSync('puzzleinput.txt', 'utf8').split('\n').map(motion => motion.split(' '));
 
 const positions = new Set();
 let h = [0,0];
@@ -73,4 +73,37 @@ for (let motion of motions) {
 }
 
 // 2456 too high
+
 console.log(positions.size)
+
+const posArr = Array.from(positions.values()).map(pos => pos.split(',').map(num => parseInt(num)))
+// console.log(posArr)
+let [top, bottom, left, right] = [0,0,0,0];
+
+for (let pos of posArr) {
+  if (pos[0] < top) top = pos[0]
+  if (pos[0] > bottom) bottom = pos[0]
+  if (pos[1] < left) left = pos[1]
+  if (pos[1] > right) right = pos[1]
+}
+
+
+const grid = [];
+
+for (let i = top; i <= bottom; i++) {
+  grid.push([])
+  for (let j = left; j <= right; j++) {
+    if (positions.has([i,j].toString())) {
+      grid[grid.length - 1].push('#')
+    } else {
+      grid[grid.length - 1].push('.')
+    }
+  }
+}
+
+const visgrid = grid.map(row => {
+  return row.join('')
+})
+console.log(visgrid.slice(0,100))
+console.log(visgrid.slice(100,200))
+console.log(visgrid.slice(200))
